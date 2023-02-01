@@ -1,2 +1,12 @@
-package de.neuefische.backend.repository;public class EmployeeRepository {
+package de.neuefische.backend.repository;
+
+
+import de.neuefische.backend.model.Employee;
+import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface EmployeeRepository extends MongoRepository<Employee, String> {
+
 }
