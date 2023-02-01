@@ -17,6 +17,7 @@
 			<sonar.organization>catakul</sonar.organization>
 			<sonar.host.url>https://sonarcloud.io</sonar.host.url>
 		<java.version>19</java.version>
+		<sonar.exclusions>de/neuefische/backend/model/**/*</sonar.exclusions>
 	</properties>
 	<dependencies>
 		<dependency>
