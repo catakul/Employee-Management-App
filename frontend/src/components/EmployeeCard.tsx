@@ -12,11 +12,11 @@ export default function EmployeeCard(props: EmployeeDeleteProps) {
     const navigate = useNavigate()
 
     function onDeleteClick() {
-        props.removeEmployee(props.employee.id)
+        props.removeEmployee(props.employee.emailId)
     }
 
     function onDetailsClick() {
-        navigate("/employees/" + props.employee.id)
+        navigate("/employees/" + props.employee.emailId)
     }
 
     return (

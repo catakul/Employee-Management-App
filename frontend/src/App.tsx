@@ -7,12 +7,16 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 import EmployeeDetails from "./components/EmployeeDetails";
 import Landingpage from "./components/Landingpage";
 import NavigationBar from "./components/NavigationBar";
-import AddEmployee from "./components/AddEmployee";
 import EmployeeList from "./components/EmployeeList";
-import AddEmployeeComponent from "./components/AddEmployeeComponent";
+import AddEmployeeComponent from "./components/AddEmployeeForm";
+import useEmployees from "./hooks/useEmployees";
+
 
 
 function App() {
+
+    const {createEmployee} = useEmployees()
+
     return (
         <>
             <Header/>
@@ -28,7 +32,7 @@ function App() {
                     <Route path={"/"} element={<Landingpage/>}></Route>
                     <Route path={"/employees"} element={<EmployeeDashboard/>}></Route>
                     <Route path={"/details"} element={<EmployeeDetails/>}></Route>
-                    <Route path={"/add-employee"} element={<AddEmployeeComponent/>}></Route>
+                    <Route path={"/add-employee"} element={<AddEmployeeComponent createEmployee={createEmployee}/>}></Route>
 
                 </Routes>
             </BrowserRouter>

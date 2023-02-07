@@ -1,17 +1,17 @@
 import EmployeeSearchGallery from "./EmployeeSearchGallery";
-import AddEmployee from "./AddEmployee";
 import 'bootstrap/dist/css/bootstrap.min.css'
 import useEmployees from "../hooks/useEmployees"
 import EmployeeList from "./EmployeeList";
+import AddEmployeeForm from "./AddEmployeeForm";
 
 export default function EmployeeDashboard() {
 
-    const [employees, addEmployees, removeEmployee] = useEmployees()
+    const {employees, createEmployee, removeEmployee} = useEmployees()
 
     return (
         <>
 
-            <AddEmployee addEmployee={addEmployees}/>
+            <AddEmployeeForm createEmployee={createEmployee}/>
             <br/>
             <br/>
             <br/>
@@ -22,7 +22,8 @@ export default function EmployeeDashboard() {
                 name: "",
                 position: "",
                 gender: "",
-                age: 0
+                age: "",
+                emailId: ""
             }}/>
             {/*removeEmployee={removeEmployee} employee={employees}*/}
         </>

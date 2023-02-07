@@ -9,7 +9,7 @@ import java.util.Objects;
 @Data
 //@AllArgsConstructor
 @NoArgsConstructor
-//@Document(collection = "employees")
+@Document(collection = "employees")
 public class Employee {
     @Id
     private String id;
@@ -17,14 +17,16 @@ public class Employee {
     private int age;
     private String position;
     private String gender;
+    private String emailId;
 
 
-    public Employee(String id, String name, int age, String position, String gender) {
+    public Employee(String id, String name, int age, String position, String gender, String emailId) {
         this.id = id;
         this.name = name;
         this.age = age;
         this.position = position;
         this.gender = gender;
+        this.emailId = emailId;
 
     }
 
@@ -44,41 +46,25 @@ public class Employee {
         this.name = name;
     }
 
-    public int getAge() {
-        return age;
-    }
+    public int getAge() {return age;}
 
-    public void setAge(int age) {
-        this.age = age;
-    }
+    public void setAge(int age) {this.age = age;}
+
+    public String getEmailId() {return emailId;}
+
+    public void setEmailId(String emailId) {this.emailId = emailId;}
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Employee employee = (Employee) o;
-        return age == employee.age && Objects.equals(id, employee.id) && Objects.equals(name, employee.name) && Objects.equals(position, employee.position) && Objects.equals(gender, employee.gender);
+        return age == employee.age && Objects.equals(id, employee.id) && Objects.equals(name, employee.name) && Objects.equals(position, employee.position) && Objects.equals(gender, employee.gender) && Objects.equals(emailId, employee.emailId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, age, position, gender);
-    }
-
-    public String getPosition() {
-        return position;
-    }
-
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
-
-    public void setPosition(String position) {
-        this.position = position;
+        return Objects.hash(id, name, age, position, gender, emailId);
     }
 
     @Override
@@ -89,6 +75,7 @@ public class Employee {
                 ", age=" + age +
                 ", position='" + position + '\'' +
                 ", gender='" + gender + '\'' +
+                ", emailId='" + emailId + '\'' +
                 '}';
     }
 

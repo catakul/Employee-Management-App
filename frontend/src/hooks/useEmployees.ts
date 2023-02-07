@@ -2,9 +2,11 @@ import {useEffect, useState} from "react";
 import {NewEmployee, Employee} from "../model/Employee";
 import axios from "axios";
 
-type UseEmployeesReturnType = [Employee[], (newEmployee: NewEmployee) => Promise<void>, (id: string) => void]
+// type UseEmployeesReturnType = (newEmployee: NewEmployee) => Promise<void>
 
-export default function useEmployees() : UseEmployeesReturnType{
+//(Employee[] | ((newEmployee: NewEmployee) => Promise<void>) | ((id: string) => void))[]{
+
+export default function useEmployees() {
 
     const [employees, setEmployees] = useState<Employee[]>([])
 
@@ -21,9 +23,9 @@ export default function useEmployees() : UseEmployeesReturnType{
     }
 
     function createEmployee(newEmployee: NewEmployee) {
-        return axios.post("/employees", newEmployee)
-            .then(response => response.data)
-            .then((savedEmployee) => setEmployees(prevState => [...prevState, savedEmployee]))
+      axios.post("/employees", newEmployee)
+            .then(() => getEmployees())
+        //    .then((savedEmployee) => setEmployees(prevState => [...prevState, savedEmployee]))
             .catch(console.error)
     }
 
@@ -37,5 +39,5 @@ export default function useEmployees() : UseEmployeesReturnType{
             })
     }
 
-    return [employees, createEmployee, removeEmployee]
+    return {employees, createEmployee, removeEmployee}
 }

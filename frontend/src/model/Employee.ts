@@ -3,7 +3,8 @@ export type Employee = {
     name: string
     position: string
     gender: string
-    age: number
+    age: string //number oder string?
+    emailId: string
 
 }
 
