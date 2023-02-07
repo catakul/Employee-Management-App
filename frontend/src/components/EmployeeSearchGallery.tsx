@@ -1,5 +1,5 @@
 import {Employee} from "../model/Employee";
-import EmployeeCard from "./EmployeeDelete";
+import EmployeeCard from "./EmployeeCard";
 import {ChangeEvent, useState} from "react";
 import styled from "styled-components";
 
@@ -8,7 +8,7 @@ type EmployeeSearchProps = {
     removeEmployee: (id: string) => void
 }
 
-export default function EmployeeSearch(props: EmployeeSearchProps) {
+export default function EmployeeSearchGallery(props: EmployeeSearchProps) {
 
     const [searchText, setSearchText] = useState<string>("")
 

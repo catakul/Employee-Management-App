@@ -38,5 +38,7 @@ export default function EmployeeDetails() {
             }
         </div>
 
+
+
     )
 }

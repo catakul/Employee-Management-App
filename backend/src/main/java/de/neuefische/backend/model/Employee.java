@@ -7,7 +7,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.util.Objects;
 
 @Data
-@AllArgsConstructor
+//@AllArgsConstructor
 @NoArgsConstructor
 //@Document(collection = "employees")
 public class Employee {
@@ -18,9 +18,14 @@ public class Employee {
     private String position;
     private String gender;
 
-    public Employee(String id, String name) {
+
+    public Employee(String id, String name, int age, String position, String gender) {
         this.id = id;
         this.name = name;
+        this.age = age;
+        this.position = position;
+        this.gender = gender;
+
     }
 
     public String getId() {
@@ -39,25 +44,59 @@ public class Employee {
         this.name = name;
     }
 
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Employee employee = (Employee) o;
-        return Objects.equals(id, employee.id) && Objects.equals(name, employee.name);
+        return age == employee.age && Objects.equals(id, employee.id) && Objects.equals(name, employee.name) && Objects.equals(position, employee.position) && Objects.equals(gender, employee.gender);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name);
+        return Objects.hash(id, name, age, position, gender);
+    }
+
+    public String getPosition() {
+        return position;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public void setPosition(String position) {
+        this.position = position;
     }
 
     @Override
     public String toString() {
         return "Employee{" +
-                "id=" + id +
+                "id='" + id + '\'' +
                 ", name='" + name + '\'' +
+                ", age=" + age +
+                ", position='" + position + '\'' +
+                ", gender='" + gender + '\'' +
                 '}';
     }
 
+//    @Override
+//    public String toString() {
+//        return "Employee{" +
+//                "id=" + id +
+//                ", name='" + name + '\'' +
+//                '}';
 }
+

@@ -21,7 +21,7 @@ export default function useEmployees() : UseEmployeesReturnType{
     }
 
     function createEmployee(newEmployee: NewEmployee) {
-        return axios.post("/employees/create", newEmployee)
+        return axios.post("/employees", newEmployee)
             .then(response => response.data)
             .then((savedEmployee) => setEmployees(prevState => [...prevState, savedEmployee]))
             .catch(console.error)
