@@ -30,7 +30,7 @@ export default function AddEmployeeForm(props: AddEmployeeProps) {
             emailId : emailId
         }
         props.createEmployee(employeeData)
-        navigate(-1)
+        navigate("/employees")
     }
 
     return (
