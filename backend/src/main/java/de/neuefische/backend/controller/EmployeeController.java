@@ -1,36 +1,45 @@
 package de.neuefische.backend.controller;
 
 import de.neuefische.backend.model.Employee;
-import de.neuefische.backend.repository.EmployeeRepository;
+import de.neuefische.backend.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-
 import java.util.List;
+import java.util.Optional;
 
-
+@CrossOrigin(origins = {""})
 @RestController
-@RequestMapping("/api/v1/employees")
+@RequestMapping("employees")
 public class EmployeeController {
 
+    private final EmployeeService employeeService;
+
     @Autowired
-    private EmployeeRepository employeeRepository;
-
-    @PostMapping("/create")
-    public void createEmployee(@RequestBody Employee employee) {
-        employeeRepository.insert(employee);
-
+    public EmployeeController(EmployeeService employeeService) {
+        this.employeeService = employeeService;
     }
 
-    @PostMapping("/delete/{id}")
+    @GetMapping
+    public List<Employee> listEmployees(@RequestParam Optional<String> search) {
+        if (search.isPresent()) {
+            return employeeService.search(search.get());
+        }
+        return employeeService.list();
+    }
+
+    @GetMapping("{id}")
+    public Employee getEmployee(@PathVariable String id) {
+        return employeeService.findById(id);
+    }
+
+    @PostMapping()
+    public Employee addEmployee(@RequestBody Employee employee) {
+        return employeeService.addEmployee(employee);
+    }
+
+    @DeleteMapping("{id}")
     public void deleteEmployee(@PathVariable String id) {
-        employeeRepository.deleteById(id);
+        employeeService.delete(id);
     }
-
-    @GetMapping("/list")
-    public List<Employee> listEmployees() {
-        return employeeRepository.findAll();
-
-    }
-
 }
