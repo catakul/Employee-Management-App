@@ -11,7 +11,7 @@ export default function EmployeeDashboard() {
     return (
         <>
 
-            <AddEmployeeForm createEmployee={createEmployee}/>
+            {/*<AddEmployeeForm createEmployee={createEmployee}/>*/}
             <br/>
             <br/>
             <br/>
