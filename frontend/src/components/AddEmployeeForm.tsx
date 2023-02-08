@@ -1,6 +1,7 @@
 import {ChangeEvent, useState} from "react";
 import {Employee, NewEmployee} from "../model/Employee";
 import Form from 'react-bootstrap/Form';
+import {useNavigate} from "react-router-dom";
 
 type AddEmployeeProps = {
     createEmployee: (newEmployee: NewEmployee) => void
@@ -13,6 +14,7 @@ export default function AddEmployeeForm(props: AddEmployeeProps) {
     const [gender, setGender] = useState("")
     const [position, setPosition] = useState("")
     const [emailId, setEmailId] = useState("")
+    const navigate = useNavigate();
 
     function onNameChange(event: ChangeEvent<HTMLInputElement>) {
         setName(event.target.value)
@@ -28,8 +30,8 @@ export default function AddEmployeeForm(props: AddEmployeeProps) {
             emailId : emailId
         }
         props.createEmployee(employeeData)
+        navigate(-1)
     }
-
 
     return (
         <div>
@@ -75,8 +77,6 @@ export default function AddEmployeeForm(props: AddEmployeeProps) {
                                     >
                                     </input>
                                 </div>
-
-
                                 <div className="from-group mb-2">
                                     <label className="form-label">Gender</label>
                                     <Form.Select placeholder="gender" name="gender" className="form-control" value={gender} aria-label="Default select example" onChange={(e) => setGender(e.target.value)}>
@@ -84,18 +84,7 @@ export default function AddEmployeeForm(props: AddEmployeeProps) {
                                         <option value="Male">Male</option>
                                         <option value="Female">Female</option>
                                     </Form.Select>
-                                    {/*<input*/}
-                                    {/*    type="text"*/}
-                                    {/*    placeholder="gender"*/}
-                                    {/*    name="gender"*/}
-                                    {/*    className="form-control"*/}
-                                    {/*    value={gender}*/}
-                                    {/*    onChange={(e) => setGender(e.target.value)}*/}
-                                    {/*>*/}
-                                    {/*</input>*/}
                                 </div>
-
-
                                 <div className="from-group mb-2">
                                     <label className="form-label">Age</label>
                                     <input
@@ -111,11 +100,7 @@ export default function AddEmployeeForm(props: AddEmployeeProps) {
                                 <button className="btn btn-success" onClick={onSaveClick}>Save Employee
                                 </button>
                             </form>
-
-                            {/*<button className="btn btn-success" onClick={(e) => saveEmployee(e)}>Save Employee*/}
-                            {/*   </button>*/}
                         </div>
-
                     </div>
                 </div>
             </div>
