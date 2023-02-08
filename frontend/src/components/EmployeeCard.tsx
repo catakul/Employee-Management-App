@@ -21,11 +21,8 @@ export default function EmployeeCard(props: EmployeeDeleteProps) {
 
     return (
         <StyledEmployee>
-            {/*<StyledEmployeeName>{props.employee.name}</StyledEmployeeName>*/}
-            {/*<StyledEmployeeId>{props.employee.id}</StyledEmployeeId>*/}
             <StyledDetailsButton onClick={onDetailsClick}>Details</StyledDetailsButton>
             <StyledDeleteButton onClick={onDeleteClick}>Delete</StyledDeleteButton>
-
         </StyledEmployee>
     )
 }
@@ -36,14 +33,6 @@ const StyledEmployee = styled.div`
 //     padding: 15px;
 //     border-radius: 5px;
 `;
-//
-// const StyledEmployeeName = styled.p`
-//   font-size: 1.5em
-// `;
-//
-// const StyledEmployeeId = styled.p`
-//   font-size: 0.75em
-// `;
 
 const StyledDetailsButton = styled.button`
 margin-left: 6px;

@@ -19,12 +19,6 @@ function App() {
     return (
         <>
             <Header/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
             <BrowserRouter>
                 <NavigationBar />
                 <Routes>
@@ -32,7 +26,6 @@ function App() {
                     <Route path={"/employees"} element={<EmployeeDashboard/>}></Route>
                     <Route path={"/details"} element={<EmployeeDetails/>}></Route>
                     <Route path={"/add-employee"} element={<AddEmployeeForm createEmployee={createEmployee}/>}></Route>
-
                 </Routes>
             </BrowserRouter>
             <Footer/>

@@ -1,6 +1,6 @@
-import {ChangeEvent, MouseEvent, useState} from "react";
+import {ChangeEvent, useState} from "react";
 import {Employee, NewEmployee} from "../model/Employee";
-import useEmployees from "../hooks/useEmployees";
+import Form from 'react-bootstrap/Form';
 
 type AddEmployeeProps = {
     createEmployee: (newEmployee: NewEmployee) => void
@@ -13,23 +13,6 @@ export default function AddEmployeeForm(props: AddEmployeeProps) {
     const [gender, setGender] = useState("")
     const [position, setPosition] = useState("")
     const [emailId, setEmailId] = useState("")
-
-    // const [id, setId] = useState("")
-
-    // const [form, setForm] = useState<string>("")
-
-//     const saveEmployee = (e: React.MouseEvent<HTMLButtonElement>) => {
-//         e.preventDefault();
-//
-//         const employee = {name, age, gender, position, emailId}
-//
-//       useEmployees.createEmployee(employee).then((response) =>{
-// console.log(response.data)
-//       }).catch(error => {
-//           console.log(error)
-//       })
-//     }
-
 
     function onNameChange(event: ChangeEvent<HTMLInputElement>) {
         setName(event.target.value)
@@ -92,18 +75,27 @@ export default function AddEmployeeForm(props: AddEmployeeProps) {
                                     >
                                     </input>
                                 </div>
+
+
                                 <div className="from-group mb-2">
                                     <label className="form-label">Gender</label>
-                                    <input
-                                        type="text"
-                                        placeholder="gender"
-                                        name="gender"
-                                        className="form-control"
-                                        value={gender}
-                                        onChange={(e) => setGender(e.target.value)}
-                                    >
-                                    </input>
+                                    <Form.Select placeholder="gender" name="gender" className="form-control" value={gender} aria-label="Default select example" onChange={(e) => setGender(e.target.value)}>
+                                        <option>Select</option>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                    </Form.Select>
+                                    {/*<input*/}
+                                    {/*    type="text"*/}
+                                    {/*    placeholder="gender"*/}
+                                    {/*    name="gender"*/}
+                                    {/*    className="form-control"*/}
+                                    {/*    value={gender}*/}
+                                    {/*    onChange={(e) => setGender(e.target.value)}*/}
+                                    {/*>*/}
+                                    {/*</input>*/}
                                 </div>
+
+
                                 <div className="from-group mb-2">
                                     <label className="form-label">Age</label>
                                     <input

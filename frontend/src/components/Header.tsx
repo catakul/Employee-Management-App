@@ -15,6 +15,7 @@ const StyledHeader = styled.header`
   /* overflow-y: none;
   scrollbar-width: none; */
   overflow-x: scroll;
+  margin-top: 170px;
 `;
 
 const StyledTitel = styled.nav`
