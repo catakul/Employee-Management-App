@@ -22,89 +22,86 @@ export default function AddEmployeeForm(props: AddEmployeeProps) {
 
     function onSaveClick() {
         const employeeData: Employee = {
-            id : "",
-            name : name,
-            age : age,
-            gender : gender,
-            position : position,
-            emailId : emailId
+            id: "",
+            name: name,
+            age: age,
+            gender: gender,
+            position: position,
+            emailId: emailId
         }
         props.createEmployee(employeeData)
         navigate("/employees")
     }
 
     return (
-        <div>
-            <div className="container">
-                <div className="row">
-                    <div className="card col-md-6 offset-md-3 offset-md-3">
-                        <h2 className="text-center"> Add Employee</h2>
-                        <div className="card-body">
-                            <form>
-                                <div className="from-group mb-2">
-                                    <label className="form-label">Name of Employee</label>
-                                    <input
-                                        type="text"
-                                        placeholder="Enter a name"
-                                        name="name"
-                                        className="form-control"
-                                        value={name}
-                                        onChange={(e) => setName(e.target.value)}
-                                    >
-                                    </input>
-                                </div>
-                                <div className="from-group mb-2">
-                                    <label className="form-label">Email Adress</label>
-                                    <input
-                                        type="email"
-                                        placeholder="Enter a Email"
-                                        name="emailId"
-                                        className="form-control"
-                                        value={emailId}
-                                        onChange={(e) => setEmailId(e.target.value)}
-                                    >
-                                    </input>
-                                </div>
-                                <div className="from-group mb-2">
-                                    <label className="form-label">Position</label>
-                                    <input
-                                        type="text"
-                                        placeholder="exp. Fullstack-Developer"
-                                        name="position"
-                                        className="form-control"
-                                        value={position}
-                                        onChange={(e) => setPosition(e.target.value)}
-                                    >
-                                    </input>
-                                </div>
-                                <div className="from-group mb-2">
-                                    <label className="form-label">Gender</label>
-                                    <Form.Select placeholder="gender" name="gender" className="form-control" value={gender} aria-label="Default select example" onChange={(e) => setGender(e.target.value)}>
-                                        <option>Select</option>
-                                        <option value="Male">Male</option>
-                                        <option value="Female">Female</option>
-                                    </Form.Select>
-                                </div>
-                                <div className="from-group mb-2">
-                                    <label className="form-label">Age</label>
-                                    <input
-                                        type="number"
-                                        placeholder="age"
-                                        name="age"
-                                        className="form-control"
-                                        value={age}
-                                        onChange={(e) => setAge(e.target.value)}
-                                    >
-                                    </input>
-                                </div>
-                                <button className="btn btn-success" onClick={onSaveClick}>Save Employee
-                                </button>
-                            </form>
-                        </div>
+        <div className="container">
+            <div className="row">
+                <div className="card col-md-6 offset-md-3 offset-md-3">
+                    <h2 className="text-center"> Add Employee</h2>
+                    <div className="card-body">
+                        <form>
+                            <Form.Group className="mb-3" controlId="formBasicName">
+                                <Form.Label>Name of Employee</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    placeholder="Enter a Name"
+                                    name="name"
+                                    value={name}
+                                    onChange={(e) => setName(e.target.value)}
+                                >
+                                </Form.Control>
+                            </Form.Group>
+                            <Form.Group className="mb-3" controlId="formBasicEmail">
+                                <Form.Label>Email Address</Form.Label>
+                                <Form.Control
+                                    type="email"
+                                    placeholder="Enter Email Address"
+                                    name="emailId"
+                                    value={emailId}
+                                    onChange={(e) => setEmailId(e.target.value)}
+                                >
+                                </Form.Control>
+                            </Form.Group>
+                            <Form.Group className="mb-3" controlId="formBasicPosition">
+                                <Form.Label>Position</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    placeholder="exp. Fullstack-Developer"
+                                    name="position"
+                                    value={position}
+                                    onChange={(e) => setPosition(e.target.value)}
+                                >
+                                </Form.Control>
+                            </Form.Group>
+                            <Form.Group className="mb-3" controlId="formBasicGender">
+                                <Form.Label>Gender</Form.Label>
+                                <Form.Select placeholder="gender"
+                                             name="gender"
+                                             value={gender}
+                                             aria-label="Default select example"
+                                             onChange={(e) => setGender(e.target.value)}>
+                                    <option>Select</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                </Form.Select>
+                            </Form.Group>
+                            <Form.Group className="mb-3" controlId="formBasicAge">
+                                <Form.Label>Age</Form.Label>
+                                <Form.Control
+                                    type="number"
+                                    placeholder="age"
+                                    name="age"
+                                    value={age}
+                                    onChange={(e) => setAge(e.target.value)}
+                                >
+                                </Form.Control>
+                            </Form.Group>
+                            <button className="btn btn-success" onClick={onSaveClick}>Save Employee
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
-
     )
 }

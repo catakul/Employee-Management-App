@@ -1,5 +1,5 @@
 import {Employee} from "../model/Employee";
-import EmployeeCard from "./EmployeeListButtons";
+import EmployeeListButtons from "./EmployeeListButtons";
 import {ChangeEvent, useState} from "react";
 import styled from "styled-components";
 
@@ -8,7 +8,7 @@ type EmployeeSearchProps = {
     removeEmployee: (id: string) => void
 }
 
-export default function EmployeeSearchGallery(props: EmployeeSearchProps) {
+export default function EmployeeSearchBar(props: EmployeeSearchProps) {
 
     const [searchText, setSearchText] = useState<string>("")
 
@@ -24,9 +24,7 @@ export default function EmployeeSearchGallery(props: EmployeeSearchProps) {
 
             <StyledDiv>
                 {filteredEmployees.map(employee =>
-                    <EmployeeCard employee={employee} key={employee.id}
-                                  removeEmployee={props.removeEmployee}/>)}
-                {/*//Ich will später über das Dashboard mappen und nicht über Karten*/}
+                    <EmployeeListButtons employee={employee} key={employee.id} removeEmployee={props.removeEmployee}/>)}
             </StyledDiv>
         </div>
     )

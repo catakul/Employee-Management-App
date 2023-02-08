@@ -2,7 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import useEmployees from "../hooks/useEmployees"
 import EmployeeList from "./EmployeeList";
 
-export default function EmployeeDashboard() {
+export default function EmployeeListElements() {
 
     const {employees, removeEmployee} = useEmployees()
 
