@@ -1,5 +1,5 @@
 import {Employee} from "../model/Employee";
-import EmployeeCard from "./EmployeeCard";
+import EmployeeCard from "./EmployeeListButtons";
 import {ChangeEvent, useState} from "react";
 import styled from "styled-components";
 
