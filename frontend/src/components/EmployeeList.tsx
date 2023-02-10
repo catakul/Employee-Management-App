@@ -1,6 +1,6 @@
 import {Link} from "react-router-dom";
 import {Employee} from "../model/Employee";
-import EmployeeCard from "./EmployeeCard";
+import EmployeeListButtons from "./EmployeeListButtons";
 
 interface EmployeeListProps {
     employees: Employee[]
@@ -35,8 +35,7 @@ export default function EmployeeList(props: EmployeeListProps) {
                                 <td>{employee["gender"]}</td>
                                 <td>{employee["age"]}</td>
                                 <td>{employee["id"]}</td>
-                                <EmployeeCard employee={employee} key={employee.id}
-                                              removeEmployee={props.removeEmployee}/>
+                                <EmployeeListButtons employee={employee} key={employee.id} removeEmployee={props.removeEmployee}/>
                             </tr>
                     )
                     }
