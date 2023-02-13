@@ -10,7 +10,7 @@ import java.util.Optional;
 
 @Repository
 public class EmployeeRepository {
-    private List<Employee> employees = new ArrayList<>();
+    private static List<Employee> employees = new ArrayList<>();
 
     public List<Employee> getEmployees() {
         return employees;
@@ -25,7 +25,7 @@ public class EmployeeRepository {
         return employee;
     }
 
-    public Optional<Employee> findById(String id) {
+    public static Optional<Employee> findById(String id) {
         for (Employee employee: employees) {
             if (employee.getId().equals(id)) {
                 return Optional.of(employee);

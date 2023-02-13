@@ -24,6 +24,7 @@ export default function EmployeeList(props: EmployeeListProps) {
                     <th>gender</th>
                     <th>age</th>
                     <th>Employee Id</th>
+                    <th>Actions</th>
                     </thead>
                     <tbody>
                     {props.employees.map(
@@ -35,7 +36,13 @@ export default function EmployeeList(props: EmployeeListProps) {
                                 <td>{employee["gender"]}</td>
                                 <td>{employee["age"]}</td>
                                 <td>{employee["id"]}</td>
-                                <EmployeeListButtons employee={employee} key={employee.id} removeEmployee={props.removeEmployee}/>
+                                <td>
+                                    <Link className="btn btn-info" to={"/edit-employee/${employee.id}"}>
+                                        Update
+                                    </Link>
+                                </td>
+                                <EmployeeListButtons employee={employee} key={employee.id}
+                                                     removeEmployee={props.removeEmployee}/>
                             </tr>
                     )
                     }

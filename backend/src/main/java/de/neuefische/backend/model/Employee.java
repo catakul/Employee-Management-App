@@ -13,11 +13,13 @@ import java.util.Objects;
 public class Employee {
     @Id
     private String id;
-    private String name;
-    private int age;
-    private String position;
-    private String gender;
-    private String emailId;
+    private static String name;
+    private static int age;
+    private static String position;
+    private static String gender;
+    private static String emailId;
+
+
 
 
     public Employee(String id, String name, int age, String position, String gender, String emailId) {
@@ -38,7 +40,15 @@ public class Employee {
         this.id = id;
     }
 
-    public String getName() {
+    public static String getPosition() {return position;}
+
+    public static String getGender() {return gender;}
+
+    public void setGender(String gender) {this.gender = gender;}
+
+    public void setPosition(String position) {this.position = position;}
+
+    public static String getName() {
         return name;
     }
 
@@ -46,11 +56,11 @@ public class Employee {
         this.name = name;
     }
 
-    public int getAge() {return age;}
+    public static int getAge() {return age;}
 
     public void setAge(int age) {this.age = age;}
 
-    public String getEmailId() {return emailId;}
+    public static String getEmailId() {return emailId;}
 
     public void setEmailId(String emailId) {this.emailId = emailId;}
 
