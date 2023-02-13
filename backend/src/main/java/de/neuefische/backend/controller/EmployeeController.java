@@ -38,20 +38,8 @@ public class EmployeeController {
         return employeeService.findById(id);
     }
     @PutMapping
-    public ResponseEntity<Employee> updateEmployee(@PathVariable String id, Employee employeeUpdate){
-        Employee updateEmployee = employeeRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFound("Employee with id:" + id + "does not exist"));
-
-        updateEmployee.setName(employeeUpdate.getName());
-        updateEmployee.setAge(employeeUpdate.getAge());
-        updateEmployee.setGender(employeeUpdate.getGender());
-        updateEmployee.setPosition(employeeUpdate.getPosition());
-        updateEmployee.setEmailId(employeeUpdate.getEmailId());
-
-employeeRepositiory.save(updateEmployee);
-
-return ResponseEntity.ok(updateEmployee);
-
+    public Employee updateEmployee(@RequestBody Employee employeeUpdate){
+        return employeeService.save(employeeUpdate);
     }
 
     @PostMapping()

@@ -2,7 +2,10 @@ package de.neuefische.backend.service;
 
 import de.neuefische.backend.model.Employee;
 import de.neuefische.backend.repository.EmployeeRepository;
+import de.neuefische.backend.repository.TestRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -15,6 +18,8 @@ public class EmployeeService {
     private final EmployeeRepository employeeRepository;
     private final IdService idService;
 
+    private TestRepo testRepo;
+
     @Autowired
     public EmployeeService(EmployeeRepository employeeRepository, IdService idService) {
         this.employeeRepository = employeeRepository;
@@ -24,6 +29,7 @@ public class EmployeeService {
     public List<Employee> list() {
         return employeeRepository.getEmployees();
     }
+
     public Employee findById(String id) {
         Optional<Employee> optionalEmployee = employeeRepository.findById(id);
         if (optionalEmployee.isPresent()) {
@@ -39,8 +45,8 @@ public class EmployeeService {
 
     public List<Employee> search(String s) {
         List<Employee> searchResultList = new ArrayList<>();
-        for (Employee employee: list()) {
-            if (employee.getName().contains(s)){
+        for (Employee employee : list()) {
+            if (employee.getName().contains(s)) {
                 searchResultList.add(employee);
             }
         }
@@ -51,6 +57,11 @@ public class EmployeeService {
     public void delete(String id) {
         Employee employee = findById(id);
         employeeRepository.delete(employee);
+    }
+
+    public Employee save(Employee employeeUpdate) {
+        return
+                testRepo.save(employeeUpdate);
     }
 
 }

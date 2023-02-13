@@ -21,7 +21,7 @@ export default function EmployeeListButtons(props: EmployeeDeleteProps) {
 
     return (
         <StyledEmployee>
-            <StyledDetailsButton onClick={onDetailsClick}>Details</StyledDetailsButton>
+            {/*<StyledDetailsButton onClick={onDetailsClick}>Details</StyledDetailsButton>*/}
             <StyledDeleteButton onClick={onDeleteClick}>Delete</StyledDeleteButton>
         </StyledEmployee>
     )
