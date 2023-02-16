@@ -7,6 +7,7 @@ type EmployeeListProps = {
     removeEmployee: (id: string) => void
 }
 
+
 export default function EmployeeList(props: EmployeeListProps) {
     const navigate = useNavigate();
 

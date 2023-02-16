@@ -1,43 +1,42 @@
-import {Employee} from "../model/Employee";
-import EmployeeListButtons from "./EmployeeListButtons";
-import {ChangeEvent, useState} from "react";
+import { Employee } from "../model/Employee";
+import { ChangeEvent } from "react";
 import styled from "styled-components";
 
 type EmployeeSearchProps = {
-    employees: Employee[]
-}
+    employees: Employee[];
+    onSearchChange: (searchTerm: string) => void;
+};
 
 export default function EmployeeSearchBar(props: EmployeeSearchProps) {
+    const { employees, onSearchChange } = props;
 
-    const [searchText, setSearchText] = useState<string>("")
-
-    const filteredEmployees: Employee[] = props.employees.filter(employee => employee.name.toLowerCase().includes(searchText.toLowerCase()))
-
-    function onSearchChange(event: ChangeEvent<HTMLInputElement>) {
-        setSearchText(event.target.value)
+    function handleSearchChange(event: ChangeEvent<HTMLInputElement>) {
+        onSearchChange(event.target.value);
     }
 
     return (
         <div>
-            <StyledInput placeholder={"Search"} value={searchText} onChange={onSearchChange}/>
+            <StyledInput
+                placeholder={"Search"}
+                onChange={handleSearchChange}
+            />
 
             <StyledDiv>
-                {filteredEmployees.map(employee =>
-                    <EmployeeListButtons employee={employee} key={employee.id}/>)}
+                {employees.map((employee) => (
+                    <div key={employee.id}>{employee.name}</div>
+                ))}
             </StyledDiv>
         </div>
-    )
+    );
 }
 
-const StyledDiv = styled.div`
-    display: flex;
-    gap: 15px;
-    padding: 50px;
-    margin-top: 10px;
-    border-top: black solid 2px;
-`;
 const StyledInput = styled.input`
-  padding: 16px;
-font-size: 16px;
-margin: 4px;
+  margin-bottom: 10px;
+  padding: 5px;
+  width: 100%;
+`;
+
+const StyledDiv = styled.div`
+  display: flex;
+  flex-wrap: wrap;
 `;

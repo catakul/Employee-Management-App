@@ -10,38 +10,45 @@ import NavigationBar from "./components/NavigationBar";
 import AddEmployeeForm from "./components/AddEmployeeForm";
 import useEmployees from "./hooks/useEmployees";
 import EditEmployeeForm from "./components/EditEmployeeForm";
-import EmployeeSearchBar from "./components/EmployeeSearchBar";
+import 'bootstrap/dist/css/bootstrap.min.css'
+
+
 
 
 function App() {
-
-    const {createEmployee, editEmployee, employees} = useEmployees()
+    const { createEmployee, editEmployee, employees } = useEmployees();
 
     return (
         <>
-            <Header/>
-            <EmployeeSearchBar employees={employees}/>
+            <Header />
             <BrowserRouter>
-                <NavigationBar/>
+                <NavigationBar />
                 <Routes>
-                    <Route path={"/"} element={<Landingpage/>}></Route>
-                    <Route path={"/employees"} element={<EmployeeListElements/>}></Route>
-                    <Route path={"/details"} element={<EmployeeDetails/>}></Route>
-                    <Route path={"/add-employee"} element={<AddEmployeeForm createEmployee={createEmployee}/>}></Route>
-                    <Route path={"/edit-employee/:id"} element={<EditEmployeeForm editEmployee={editEmployee}
-                                                                                  employees={employees} employee={{
-                        id: '',
-                        name: '',
-                        position: '',
-                        gender: '',
-                        age: '',
-                        emailId: ''
-                    }}/>}></Route>
+                    <Route path={"/"} element={<Landingpage />} />
+                    <Route path={"/employees"} element={<EmployeeListElements />} />
+                    <Route path={"/details"} element={<EmployeeDetails />} />
+                    <Route path={"/add-employee"} element={<AddEmployeeForm createEmployee={createEmployee} />} />
+                    <Route
+                        path={"/edit-employee/:id"}
+                        element={
+                            <EditEmployeeForm
+                                editEmployee={editEmployee}
+                                employees={employees}
+                                employee={{
+                                    id: "",
+                                    name: "",
+                                    position: "",
+                                    gender: "",
+                                    age: "",
+                                    emailId: "",
+                                }}
+                            />
+                        }
+                    />
                 </Routes>
             </BrowserRouter>
-            <Footer/>
+            <Footer />
         </>
     );
 }
-
 export default App;
