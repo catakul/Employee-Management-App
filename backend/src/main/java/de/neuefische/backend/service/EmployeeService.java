@@ -2,28 +2,25 @@ package de.neuefische.backend.service;
 
 import de.neuefische.backend.model.Employee;
 import de.neuefische.backend.repository.EmployeeRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@RequiredArgsConstructor
 @Service
 public class EmployeeService {
 
     private final EmployeeRepository employeeRepository;
     private final IdService idService;
 
-    @Autowired
-    public EmployeeService(EmployeeRepository employeeRepository, IdService idService) {
-        this.employeeRepository = employeeRepository;
-        this.idService = idService;
-    }
 
     public List<Employee> list() {
-        return employeeRepository.getEmployees();
+        return employeeRepository.findAll();
     }
+
     public Employee findById(String id) {
         Optional<Employee> optionalEmployee = employeeRepository.findById(id);
         if (optionalEmployee.isPresent()) {
@@ -34,13 +31,13 @@ public class EmployeeService {
 
     public Employee addEmployee(Employee employee) {
         employee.setId(idService.generateId());
-        return employeeRepository.add(employee);
+        return employeeRepository.save(employee);
     }
 
-    public List<Employee> search(String s) {
+    public List<Employee> searchEmployee(String s) {
         List<Employee> searchResultList = new ArrayList<>();
-        for (Employee employee: list()) {
-            if (employee.getName().contains(s)){
+        for (Employee employee : list()) {
+            if (employee.getName().contains(s)) {
                 searchResultList.add(employee);
             }
         }
@@ -48,8 +45,14 @@ public class EmployeeService {
         return searchResultList;
     }
 
-    public void delete(String id) {
+    public void deleteEmployee(String id) {
         Employee employee = findById(id);
         employeeRepository.delete(employee);
     }
+
+    public Employee saveEmployee(Employee employeeUpdate) {
+        return
+                employeeRepository.save(employeeUpdate);
+    }
+
 }

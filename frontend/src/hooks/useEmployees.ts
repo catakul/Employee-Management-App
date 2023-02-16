@@ -21,7 +21,12 @@ export default function useEmployees() {
     function createEmployee(newEmployee: NewEmployee) {
       axios.post("/employees", newEmployee)
             .then(() => getEmployees())
-        //    .then((savedEmployee) => setEmployees(prevState => [...prevState, savedEmployee]))
+            .catch(console.error)
+    }
+
+    function editEmployee(employee: Employee) {
+        axios.put("/employees", employee)
+            .then(() => getEmployees())
             .catch(console.error)
     }
 
@@ -35,5 +40,5 @@ export default function useEmployees() {
             })
     }
 
-    return {employees, createEmployee, removeEmployee}
+    return {employees, createEmployee, removeEmployee, editEmployee}
 }

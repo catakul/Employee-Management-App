@@ -1,44 +1,66 @@
+import React, {useState} from "react";
 import {Employee} from "../model/Employee";
-import EmployeeListButtons from "./EmployeeListButtons";
-import {ChangeEvent, useState} from "react";
+import {ChangeEvent} from "react";
 import styled from "styled-components";
+import EmployeeList from "./EmployeeList";
 
 type EmployeeSearchProps = {
-    employees: Employee[]
-    removeEmployee: (id: string) => void
-}
+    employees: Employee[];
+    onSearchChange: (searchTerm: string) => void;
+    removeEmployee: (id: string) => void;
+};
 
-export default function EmployeeSearchBar(props: EmployeeSearchProps) {
+export default function EmployeeSearchBar({
+                                              employees,
+                                              onSearchChange,
+                                              removeEmployee,
+                                          }: EmployeeSearchProps) {
+    const [searchTerm, setSearchTerm] = useState("");
 
-    const [searchText, setSearchText] = useState<string>("")
+    function handleSearchChange(event: ChangeEvent<HTMLInputElement>) {
+        setSearchTerm(event.target.value);
+        onSearchChange(event.target.value);
+    }
 
-    const filteredEmployees: Employee[] = props.employees.filter(employee => employee.name.toLowerCase().includes(searchText.toLowerCase()))
-
-    function onSearchChange(event: ChangeEvent<HTMLInputElement>) {
-        setSearchText(event.target.value)
+    function filterEmployees() {
+        if (!searchTerm) {
+            return employees;
+        }
+        return employees.filter((employee) =>
+            employee.name.toLowerCase().includes(searchTerm.toLowerCase())
+        );
     }
 
     return (
-        <div>
-            <StyledInput placeholder={"Search"} value={searchText} onChange={onSearchChange}/>
+        <>
+            <div className="container">
+                <div className="row mb-4">
+                    <div className="col-4">
+                        <StyledInput
+                            type="text"
+                            className="form-control"
+                            placeholder={"Search by name"}
+                            value={searchTerm}
+                            onChange={handleSearchChange}
+                        />
+                    </div>
+                </div>
+            </div>
 
             <StyledDiv>
-                {filteredEmployees.map(employee =>
-                    <EmployeeListButtons employee={employee} key={employee.id} removeEmployee={props.removeEmployee}/>)}
+                <EmployeeList employees={filterEmployees()} removeEmployee={removeEmployee}/>
             </StyledDiv>
-        </div>
-    )
+        </>
+    );
 }
 
-const StyledDiv = styled.div`
-    display: flex;
-    gap: 15px;
-    padding: 50px;
-    margin-top: 10px;
-    border-top: black solid 2px;
-`;
 const StyledInput = styled.input`
-  padding: 16px;
-font-size: 16px;
-margin: 4px;
+  margin-bottom: 10px;
+  padding: 5px;
+  width: 50%;
+`;
+
+const StyledDiv = styled.div`
+  display: flex;
+  flex-wrap: wrap;
 `;
