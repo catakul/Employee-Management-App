@@ -10,11 +10,7 @@ type EmployeeSearchProps = {
     removeEmployee: (id: string) => void;
 };
 
-export default function EmployeeSearchBar({
-                                              employees,
-                                              onSearchChange,
-                                              removeEmployee,
-                                          }: EmployeeSearchProps) {
+export default function EmployeeSearchBar({employees, onSearchChange, removeEmployee,}: EmployeeSearchProps) {
     const [searchTerm, setSearchTerm] = useState("");
 
     function handleSearchChange(event: ChangeEvent<HTMLInputElement>) {
@@ -27,7 +23,7 @@ export default function EmployeeSearchBar({
             return employees;
         }
         return employees.filter((employee) =>
-            employee.name.toLowerCase().includes(searchTerm.toLowerCase())
+            employee.name.toLowerCase().startsWith(searchTerm.toLowerCase())
         );
     }
 
