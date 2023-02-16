@@ -1,13 +1,11 @@
 import React from 'react';
-
-import {Employee, NewEmployee} from "../model/Employee";
+import {NewEmployee} from '../model/Employee';
 import Form from 'react-bootstrap/Form';
-import {useNavigate} from "react-router-dom";
-import {useForm} from "react-hook-form"
-import {yupResolver} from "@hookform/resolvers/yup";
-import * as Yup from "yup"
+import { useNavigate} from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as Yup from 'yup';
 import 'bootstrap/dist/css/bootstrap-grid.min.css';
-import styled from "styled-components";
 
 type EmployeeSubmitForm = {
     name: string;
@@ -17,59 +15,31 @@ type EmployeeSubmitForm = {
     age: string;
 };
 
-//aus employee.ts importieren
-
 type AddEmployeeProps = {
-    createEmployee: (newEmployee: NewEmployee) => void
-}
+    createEmployee: (newEmployee: NewEmployee) => void;
+};
 
 export default function AddEmployeeForm(props: AddEmployeeProps) {
-
     const navigate = useNavigate();
-
-    // function onSaveClick() {
-    //     const employeeData: Employee = {
-    //         id: "",
-    //         name: name,
-    //         emailId: emailId,
-    //         position: position,
-    //         gender: gender,
-    //         age: age
-    //
-    //     }
-    //     props.createEmployee(employeeData)
-    //     navigate("/employees")
-    // }
 
     const validationSchema = Yup.object().shape({
         name: Yup.string().required('Inserting the full name is required'),
-        emailId: Yup.string()
-            .required('Email Address is required')
-            .email('Email is invalid'),
-        position: Yup.string()
-            .required('Choosing the position is required'),
-        gender: Yup.string()
-            .required('Choosing a gender is required'),
-        age: Yup.string()
-            .required('Choosing the age is required')
+        emailId: Yup.string().required('Email Address is required').email('Email is invalid'),
+        position: Yup.string().required('position is required'),
+        gender: Yup.string().required('gender is required'),
+        age: Yup.string().required('the age is required'),
     });
 
-    //fehlermeldungen umbenennen
+    const { register, handleSubmit, formState: { errors }} = useForm<EmployeeSubmitForm>({
+        resolver: yupResolver(validationSchema),
 
-    const {
-        register,
-        handleSubmit,
-        formState: {errors}
-    } = useForm<EmployeeSubmitForm>({
-        resolver: yupResolver(validationSchema)
     });
 
     const onSubmit = (data: EmployeeSubmitForm) => {
         console.log(JSON.stringify(data, null, 2));
-        props.createEmployee(data)
-        navigate("/employees")
+        props.createEmployee(data);
+        navigate('/employees');
     };
-
 
     return (
         <div className="container">
@@ -153,9 +123,3 @@ export default function AddEmployeeForm(props: AddEmployeeProps) {
         </div>
     )
 }
-
-//Fix styled
-
-const StyledButtons = styled.button`
-display: flex;
-justify-content: space-between`

@@ -5,7 +5,6 @@ import styled from "styled-components";
 
 type EmployeeSearchProps = {
     employees: Employee[]
-    removeEmployee: (id: string) => void
 }
 
 export default function EmployeeSearchBar(props: EmployeeSearchProps) {
@@ -24,7 +23,7 @@ export default function EmployeeSearchBar(props: EmployeeSearchProps) {
 
             <StyledDiv>
                 {filteredEmployees.map(employee =>
-                    <EmployeeListButtons employee={employee} key={employee.id} removeEmployee={props.removeEmployee}/>)}
+                    <EmployeeListButtons employee={employee} key={employee.id}/>)}
             </StyledDiv>
         </div>
     )

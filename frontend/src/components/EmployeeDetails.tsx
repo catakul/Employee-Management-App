@@ -32,8 +32,8 @@ export default function EmployeeDetails() {
             {employee && <div>
                 <p>{employee.name}</p>
                 <p>{employee.id}</p>
-                {/*<p>{employee.gender}</p>*/}
-                {/*<p>{employee.position}</p>*/}
+                <p>{employee.gender}</p>
+                <p>{employee.position}</p>
             </div>
             }
         </div>

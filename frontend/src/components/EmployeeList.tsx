@@ -1,15 +1,26 @@
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {Employee} from "../model/Employee";
-import EmployeeListButtons from "./EmployeeListButtons";
+import styled from "styled-components";
 
-interface EmployeeListProps {
+type EmployeeListProps = {
     employees: Employee[]
-    employee: Employee
     removeEmployee: (id: string) => void
 }
 
-
 export default function EmployeeList(props: EmployeeListProps) {
+    const navigate = useNavigate();
+
+    function onDeleteClick(id: string) {
+        props.removeEmployee(id);
+    }
+
+    function onDetailsClick(employee: Employee) {
+        navigate(`/employees/${employee.id}`);
+    }
+
+    function onEditClick(employee: Employee) {
+        navigate(`/edit-employee/${employee.id}`, { state: { employee } });
+    }
 
     return (
         <>
@@ -37,12 +48,28 @@ export default function EmployeeList(props: EmployeeListProps) {
                                 <td>{employee["age"]}</td>
                                 <td>{employee["id"]}</td>
                                 <td>
-                                    <Link className="btn btn-info" to={"/edit-employee/${employee.id}"}>
-                                        Update
-                                    </Link>
+                                    <StyledEmployee>
+                                        <button
+                                            className="btn btn-info sm"
+                                            onClick={() => onEditClick(employee)}
+                                        >
+                                            Edit
+                                        </button>
+                                        <button
+                                            className="btn btn-secondary sm"
+                                            onClick={() => onDetailsClick(employee)}
+                                        >
+                                            Details
+                                        </button>
+                                        <button
+                                            className="btn btn-danger sm"
+                                            onClick={() => onDeleteClick(employee.id)}
+                                            key={employee.id}
+                                        >
+                                            Delete
+                                        </button>
+                                    </StyledEmployee>
                                 </td>
-                                <EmployeeListButtons employee={employee} key={employee.id}
-                                                     removeEmployee={props.removeEmployee}/>
                             </tr>
                     )
                     }
@@ -52,3 +79,9 @@ export default function EmployeeList(props: EmployeeListProps) {
         </>
     )
 }
+
+
+const StyledEmployee = styled.div`
+display: flex;
+justify-content: space-evenly
+`;

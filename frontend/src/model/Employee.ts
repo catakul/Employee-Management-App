@@ -10,4 +10,8 @@ export type Employee = {
 
 export type NewEmployee = {
     name: string
+    position: string
+    gender: string
+    age: string
+    emailId: string
 }

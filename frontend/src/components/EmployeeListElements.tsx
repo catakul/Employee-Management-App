@@ -8,14 +8,7 @@ export default function EmployeeListElements() {
 
     return (
         <>
-            <EmployeeList employees={employees} removeEmployee={removeEmployee} employee={{
-                id: "",
-                name: "",
-                position: "",
-                gender: "",
-                age: "",
-                emailId: ""
-            }}/>
+            <EmployeeList employees={employees} removeEmployee={removeEmployee} />
         </>
     )
 }

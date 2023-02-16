@@ -1,29 +1,20 @@
 import {Employee} from "../model/Employee";
-import {useNavigate} from "react-router-dom";
 import styled from "styled-components";
 
 type EmployeeDeleteProps = {
     employee: Employee
-    removeEmployee: (id: string) => void
 }
 
 export default function EmployeeListButtons(props: EmployeeDeleteProps) {
 
-    const navigate = useNavigate()
 
-    function onDeleteClick() {
-        props.removeEmployee(props.employee.id)
-    }
-
-    function onDetailsClick() {
-        navigate("/employees/" + props.employee.id)
-    }
 
     return (
+        <>
         <StyledEmployee>
             {/*<StyledDetailsButton onClick={onDetailsClick}>Details</StyledDetailsButton>*/}
-            <StyledDeleteButton onClick={onDeleteClick}>Delete</StyledDeleteButton>
         </StyledEmployee>
+        </>
     )
 }
 

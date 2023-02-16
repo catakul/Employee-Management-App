@@ -2,32 +2,23 @@ package de.neuefische.backend.service;
 
 import de.neuefische.backend.model.Employee;
 import de.neuefische.backend.repository.EmployeeRepository;
-import de.neuefische.backend.repository.TestRepo;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.mongodb.repository.MongoRepository;
-import org.springframework.stereotype.Repository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@RequiredArgsConstructor
 @Service
 public class EmployeeService {
 
     private final EmployeeRepository employeeRepository;
     private final IdService idService;
 
-    private TestRepo testRepo;
-
-    @Autowired
-    public EmployeeService(EmployeeRepository employeeRepository, IdService idService) {
-        this.employeeRepository = employeeRepository;
-        this.idService = idService;
-    }
 
     public List<Employee> list() {
-        return employeeRepository.getEmployees();
+        return employeeRepository.findAll();
     }
 
     public Employee findById(String id) {
@@ -40,10 +31,10 @@ public class EmployeeService {
 
     public Employee addEmployee(Employee employee) {
         employee.setId(idService.generateId());
-        return employeeRepository.add(employee);
+        return employeeRepository.save(employee);
     }
 
-    public List<Employee> search(String s) {
+    public List<Employee> searchEmployee(String s) {
         List<Employee> searchResultList = new ArrayList<>();
         for (Employee employee : list()) {
             if (employee.getName().contains(s)) {
@@ -54,14 +45,14 @@ public class EmployeeService {
         return searchResultList;
     }
 
-    public void delete(String id) {
+    public void deleteEmployee(String id) {
         Employee employee = findById(id);
         employeeRepository.delete(employee);
     }
 
-    public Employee save(Employee employeeUpdate) {
+    public Employee saveEmployee(Employee employeeUpdate) {
         return
-                testRepo.save(employeeUpdate);
+                employeeRepository.save(employeeUpdate);
     }
 
 }
