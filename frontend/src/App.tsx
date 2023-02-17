@@ -5,7 +5,6 @@ import Footer from "./components/Footer";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import EmployeeDetails from "./components/EmployeeDetails";
 import Landingpage from "./components/Landingpage";
-import NavigationBar from "./components/NavigationBar";
 import AddEmployeeForm from "./components/AddEmployeeForm";
 import useEmployees from "./hooks/useEmployees";
 import EditEmployeeForm from "./components/EditEmployeeForm";
@@ -20,7 +19,6 @@ function App() {
         <>
             <Header/>
             <BrowserRouter>
-                <NavigationBar/>
                 <Routes>
                     <Route path={"/"} element={<Landingpage/>}/>
                     <Route path={"/employees"} element={<EmployeeSearchBar employees={employees} onSearchChange={() => {
