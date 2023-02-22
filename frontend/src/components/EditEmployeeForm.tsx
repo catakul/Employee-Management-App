@@ -7,6 +7,7 @@ import {yupResolver} from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import 'bootstrap/dist/css/bootstrap-grid.min.css';
 import axios from "axios";
+import styled from "styled-components";
 
 type EmployeeEditForm = {
     id: string;
@@ -81,10 +82,11 @@ export default function EditEmployeeForm(props: EditEmployeeProps) {
 
 
     return (
-        <div className="container">
+        <Container>
+            <div className="container">
             <div className="row">
                 <div className="card col-md-6 offset-md-3 offset-md-3">
-                    <h2 className="text-center"> Edit Employee</h2>
+                    <StyledHeader className="text-center"> Edit Employee</StyledHeader>
                     <div className="card-body">
                         <form onSubmit={handleSubmit(onSubmit)}>
                             <Form.Group className="mb-3">
@@ -117,6 +119,7 @@ export default function EditEmployeeForm(props: EditEmployeeProps) {
                                 </Form.Control>
                                 <div className="invalid-feedback">{errors.position?.message}</div>
                             </Form.Group>
+
                             <Form.Group className="mb-3">
                                 <Form.Label>Gender</Form.Label>
                                 <Form.Select placeholder="gender"
@@ -140,13 +143,41 @@ export default function EditEmployeeForm(props: EditEmployeeProps) {
                                 </Form.Control>
                                 <div className="invalid-feedback">{errors.age?.message}</div>
                             </Form.Group>
-                            <button type="submit" className="btn btn-success">Edit Employee
+                            <StyledButtons>
+                            <button type="submit" className="btn btn-primary">Edit Employee
                             </button>
                             <button onClick={() => navigate(-1)} className="btn btn-danger">Cancel</button>
+                            </StyledButtons>
                         </form>
                     </div>
                 </div>
             </div>
-        </div>
-    )
+            </div>
+        </Container>
+    );
 }
+
+const Container = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 87vh;
+  overflow: hidden;
+  transform: scale(1.15);
+  position: relative;
+`;
+
+const StyledHeader = styled.h2`
+  padding-top: 19px;
+  font-size: 2.6em;
+`;
+
+
+const StyledButtons = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  padding-top: 19px;
+   button:first-of-type {
+    margin-right: 10px;
+  }
+`;
