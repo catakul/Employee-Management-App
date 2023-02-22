@@ -29,7 +29,7 @@ export default function EmployeeSearchBar({employees, onSearchChange, removeEmpl
 
     return (
         <>
-            <div className="container">
+            <Container className="container">
                 <div className="row mb-4">
                     <div className="col-4">
                         <StyledInput
@@ -41,22 +41,19 @@ export default function EmployeeSearchBar({employees, onSearchChange, removeEmpl
                         />
                     </div>
                 </div>
-            </div>
-
-            <StyledDiv>
-                <EmployeeList employees={filterEmployees()} removeEmployee={removeEmployee}/>
-            </StyledDiv>
+            </Container>
+            <EmployeeList employees={filterEmployees()} removeEmployee={removeEmployee}/>
         </>
     );
 }
 
-const StyledInput = styled.input`
-  margin-bottom: 10px;
-  padding: 5px;
-  width: 50%;
+const Container = styled.div`
+  transform: scale(1.15);
+  margin-top: 5%;
 `;
 
-const StyledDiv = styled.div`
-  display: flex;
-  flex-wrap: wrap;
+const StyledInput = styled.input`
+  margin-bottom: 10px;
+  padding: 8px;
+  width: 50%;
 `;

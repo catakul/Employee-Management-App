@@ -1,5 +1,4 @@
 import React from 'react';
-import './App.css';
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
@@ -10,13 +9,15 @@ import useEmployees from "./hooks/useEmployees";
 import EditEmployeeForm from "./components/EditEmployeeForm";
 import 'bootstrap/dist/css/bootstrap.min.css'
 import EmployeeSearchBar from "./components/EmployeeSearchBar";
+import {createGlobalStyle} from "styled-components";
 
 
-function App() {
+export default function App() {
     const {createEmployee, editEmployee, employees, removeEmployee} = useEmployees();
 
     return (
         <>
+            <GlobalStyles />
             <Header/>
             <BrowserRouter>
                 <Routes>
@@ -47,4 +48,11 @@ function App() {
     );
 }
 
-export default App;
+
+const GlobalStyles = createGlobalStyle`
+  html,
+  body {
+    height: 100%;
+    overflow: hidden;
+  }
+`;
